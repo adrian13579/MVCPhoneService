@@ -5,57 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneLine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataPlan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataPlanAssignmentDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NationalDataUsage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InternationalDataUsage)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
+
+
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-black">
+                Mobile Phone Data Plan Assignment
+            </h2>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-striped border">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneLine.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataPlan.DataPlanId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataPlanAssignmentDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NationalDataUsage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InternationalDataUsage)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {phoneNumber=item.PhoneNumber,dateTime=item.DataPlanAssignmentDateTime,dataPlanId=item.DataPlanId/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Details", "Details", new {phoneNumber=item.PhoneNumber,dateTime=item.DataPlanAssignmentDateTime,dataPlanId=item.DataPlanId/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Delete", "Delete", new {phoneNumber=item.PhoneNumber,dateTime=item.DataPlanAssignmentDateTime,dataPlanId=item.DataPlanId/* id=item.PrimaryKey */})
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPlanAssignmentDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NationalDataUsage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InternationalDataUsage)
+            </th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneLine.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPlan.DataPlanId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPlanAssignmentDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NationalDataUsage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InternationalDataUsage)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { phoneNumber = item.PhoneNumber, dateTime = item.DataPlanAssignmentDateTime, dataPlanId = item.DataPlanId/* id=item.PrimaryKey */}) |
+                    @Html.ActionLink("Details", "Details", new { phoneNumber = item.PhoneNumber, dateTime = item.DataPlanAssignmentDateTime, dataPlanId = item.DataPlanId/* id=item.PrimaryKey */}) |
+                    @Html.ActionLink("Delete", "Delete", new { phoneNumber = item.PhoneNumber, dateTime = item.DataPlanAssignmentDateTime, dataPlanId = item.DataPlanId/* id=item.PrimaryKey */})
+                </td>
+            </tr>
+        }
+    </table>
+</div>

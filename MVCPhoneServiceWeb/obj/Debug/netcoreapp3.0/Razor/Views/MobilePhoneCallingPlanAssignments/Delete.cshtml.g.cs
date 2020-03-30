@@ -20,7 +20,7 @@ using MVCPhoneServiceWeb;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fd8c1492e2f91ee24122604dea2679879c97ff99", @"/Views/MobilePhoneCallingPlanAssignments/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b079a1b91f763a65c62bc3475ec22a4692397af7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"761e4d19a9ce39eeacb30215e660ca001e815f86", @"/Views/_ViewImports.cshtml")]
     public class Views_MobilePhoneCallingPlanAssignments_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Data.Models.MobilePhoneCallingPlanAssignment>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "hidden", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

@@ -5,7 +5,8 @@ namespace Data.Models
 {
     public class MobilePhone
     {
-        [Key] public int IMEI { get; set; }
+        [Key] 
+        public long IMEI { get; set; }
 
         public string Modelo { get; set; }
 

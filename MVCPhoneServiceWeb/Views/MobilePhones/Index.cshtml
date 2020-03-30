@@ -5,38 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model=>model.IMEI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem=>item.IMEI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.IMEI">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.IMEI">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.IMEI">Delete</a>
-        </td>
-    </tr>
-}
-    </tbody>
-</table>
+
+
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-black">
+                Mobile Phones
+            </h2>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-striped border">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IMEI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IMEI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IMEI">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IMEI">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IMEI">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

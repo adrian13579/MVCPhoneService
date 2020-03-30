@@ -12,7 +12,7 @@ namespace Data.Models
         public int DataPlanId { get; set; }
         public DataPlan DataPlan { get; set; }
         
-        public int NationalDataUsage { get; set; }
-        public int InternationalDataUsage { get; set; }
+        public float NationalDataUsage { get; set; }
+        public float InternationalDataUsage { get; set; }
     }
 }

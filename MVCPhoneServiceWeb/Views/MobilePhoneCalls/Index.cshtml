@@ -4,64 +4,70 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneLine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobilePhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobilePhoneCallAddressee)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobilePhoneCallDuration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobilePhoneCallCost)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
+
+
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-black">
+                Mobile Phone Call
+            </h2>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-striped border">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneLine.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobilePhone.IMEI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobilePhoneCallAddressee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobilePhoneCallDuration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobilePhoneCallCost)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {phoneNumber=item.PhoneNumber,imei=item.IMEI,dateTime=item.DateTime/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Details", "Details", new {phoneNumber=item.PhoneNumber,imei=item.IMEI,dateTime=item.DateTime/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Delete", "Delete", new {phoneNumber=item.PhoneNumber,imei=item.IMEI,dateTime=item.DateTime/* id=item.PrimaryKey */})
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhoneCallAddressee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhoneCallDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhoneCallCost)
+            </th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneLine.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobilePhone.IMEI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobilePhoneCallAddressee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobilePhoneCallDuration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobilePhoneCallCost)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { phoneNumber = item.PhoneNumber, imei = item.IMEI, dateTime = item.DateTime/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Details", "Details", new { phoneNumber = item.PhoneNumber, imei = item.IMEI, dateTime = item.DateTime/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Delete", "Delete", new { phoneNumber = item.PhoneNumber, imei = item.IMEI, dateTime = item.DateTime/* id=item.PrimaryKey */})
+        </td>
+    </tr>
+        }
+    </table>
+</div>

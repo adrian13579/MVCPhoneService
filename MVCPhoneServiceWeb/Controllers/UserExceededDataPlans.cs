@@ -29,7 +29,7 @@ namespace MVCPhoneServiceWeb.Controllers
             _month = 1;
             _year = 2020;
            
-            var a = _context.MobilePhoneDataPlanAssignments.First();
+           // var a = _context.MobilePhoneDataPlanAssignments.First();
             var join = from mdp in _context.MobilePhoneDataPlanAssignments
                 join dp in _context.DataPlans
                     on mdp.DataPlanId equals dp.DataPlanId

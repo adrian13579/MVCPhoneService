@@ -39,6 +39,10 @@
             "Chart.Mvc.Core": {
               "target": "Package",
               "version": "[1.1.0, )"
+            },
+            "Syncfusion.EJ.Export": {
+              "target": "Package",
+              "version": "[18.1.0.36-beta, )"
             }
           },
           "imports": [
@@ -125,6 +129,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Syncfusion.EJ.Export": {
+              "target": "Package",
+              "version": "[18.1.0.36-beta, )"
             }
           },
           "imports": [
@@ -218,6 +226,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Syncfusion.EJ.Export": {
+              "target": "Package",
+              "version": "[18.1.0.36-beta, )"
             }
           },
           "imports": [

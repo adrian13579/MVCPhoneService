@@ -4,43 +4,62 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br />
+<h2 class="text-black">Edit Mobile Phone CallingPlan Assignment</h2>
+<br />
 
-<h1>Edit</h1>
-
-<h4>MobilePhoneCall</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PhoneNumber" />
-            <input type="hidden" asp-for="IMEI" />
-            <input type="hidden" asp-for="DateTime" />
-            <div class="form-group">
-                <label asp-for="MobilePhoneCallAddressee" class="control-label"></label>
-                <input asp-for="MobilePhoneCallAddressee" class="form-control" />
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <div class="border backgroundWhite row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="PhoneNumber" />
+        <input type="hidden" asp-for="IMEI" />
+        <input type="hidden" asp-for="DateTime" />
+        <div class="col-4 ">
+            <div class="form-group row">
+                <div class="col-4 ">
+                    <label asp-for="MobilePhoneCallAddressee" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="MobilePhoneCallAddressee" class="form-control" />
+                </div>
                 <span asp-validation-for="MobilePhoneCallAddressee" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MobilePhoneCallDuration" class="control-label"></label>
-                <input asp-for="MobilePhoneCallDuration" class="form-control" />
+            <div class="form-group row">
+                <div class="col-4 ">
+
+                    <label asp-for="MobilePhoneCallDuration" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="MobilePhoneCallDuration" class="form-control" />
+                </div>
                 <span asp-validation-for="MobilePhoneCallDuration" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MobilePhoneCallCost" class="control-label"></label>
-                <input asp-for="MobilePhoneCallCost" class="form-control" />
+            <div class="form-group row">
+                <div class="col-4 ">
+                    <label asp-for="MobilePhoneCallCost" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="MobilePhoneCallCost" class="form-control" />
+                </div>
                 <span asp-validation-for="MobilePhoneCallCost" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+        <div class="col-4">
+        </div>
+        <div class="col-8 text-left">
+            <div class="col-8 offset-2">
+                <div class="row">
+                    <div class="col-2">
+                        <input type="submit" value="Save" class="btn btn-info" />
+                    </div>
+                    <div class="col-4 ">
+                        <a asp-action="Index" class="btn btn-success ">Back to List</a>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

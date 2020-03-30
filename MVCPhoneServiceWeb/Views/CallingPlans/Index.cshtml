@@ -5,45 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CallingPlanId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Minutes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Messages)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
+
+
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-black">
+                Calling Plan
+            </h2>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-striped border">
         <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CallingPlanId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Minutes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Messages)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.CallingPlanId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.CallingPlanId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.CallingPlanId">Delete</a>
-        </td>
+            <th>
+                @Html.DisplayNameFor(model => model.CallingPlanId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Minutes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Messages)
+            </th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallingPlanId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minutes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Messages)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CallingPlanId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CallingPlanId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CallingPlanId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Data;
 using Data.ViewModels;
@@ -71,58 +73,75 @@ namespace MVCPhoneServiceWeb.Controllers
             int _month = Utils.Utils.IntTryParse(month);
             int _year = Utils.Utils.IntTryParse(year);
 
-            var join =await _context.MobilePhoneCalls.Join(
-                _context.PhoneLineEmployees,
-                a => a.PhoneNumber,
-                b => b.PhoneNumber,
-                (a, b) => new
+            var model = from mpc in _context.MobilePhoneCalls
+                join pe in _context.PhoneLineEmployees
+                    on mpc.PhoneNumber equals pe.PhoneNumber
+                join e in _context.Employees
+                    on pe.EmployeeId equals e.EmployeeId
+                group mpc by new  { CostCenter = e.CostCenter}
+                into g
+                select new TotalCostViewModel()
                 {
-                    EmployeeId = b.EmployeeId,
-                    MobilePhoneCallCost = a.MobilePhoneCallCost,
-                    Date = a.DateTime
-                }).ToListAsync();
+                    CostCenter = g.Key.CostCenter,  
+                    Expense = g.Sum(a=>a.MobilePhoneCallCost)
+                };
             
-            var join2 =  join.Join(
-                await _context.Employees.ToListAsync(),
-                a => a.EmployeeId,
-                b => b.EmployeeId,
-                (a, b) => new
-                {
-                    CostCenter = b.CostCenter,
-                    Expense = a.MobilePhoneCallCost,
-                    Date = a.Date
-                });
+            IEnumerable<TotalCostViewModel> viewModel = model;
             
-            if (_month != -1)
-            {
-                join2 = join2.Where(a => a.Date.Month == _month);
-            }
-            if (_year != -1)
-            {
-                join2 = join2.Where(a => a.Date.Year == _year);
-            }
             
-            List<TotalCostViewModel> viewModel = new List<TotalCostViewModel>();
-            if (!join2.Any()) return View(viewModel);
+            // var join =await _context.MobilePhoneCalls.Join(
+            //     _context.PhoneLineEmployees,
+            //     a => a.PhoneNumber,
+            //     b => b.PhoneNumber,
+            //     (a, b) => new
+            //     {
+            //         EmployeeId = b.EmployeeId,
+            //         MobilePhoneCallCost = a.MobilePhoneCallCost,
+            //         Date = a.DateTime
+            //     }).ToListAsync();
+            //
+            // var join2 =  join.Join(
+            //     await _context.Employees.ToListAsync(),
+            //     a => a.EmployeeId,
+            //     b => b.EmployeeId,
+            //     (a, b) => new
+            //     {
+            //         CostCenter = b.CostCenter,
+            //         Expense = a.MobilePhoneCallCost,
+            //         Date = a.Date
+            //     });
+            //
+            // if (_month != -1)
+            // {
+            //     join2 = join2.Where(a => a.Date.Month == _month);
+            // }
+            // if (_year != -1)
+            // {
+            //     join2 = join2.Where(a => a.Date.Year == _year);
+            // }
+            //
+            // List<TotalCostViewModel> viewModel = new List<TotalCostViewModel>();
+            // if (!join2.Any()) return View(viewModel);
+            //
+            // Dictionary<string,int> costCenterExpenses = new Dictionary<string, int>();
+            // foreach (var item in join2)
+            // {
+            //     int expenses;
+            //     if (costCenterExpenses.TryGetValue(item.CostCenter, out expenses))
+            //     {
+            //         costCenterExpenses[item.CostCenter] = expenses + item.Expense;
+            //     }
+            //     else
+            //     {
+            //         costCenterExpenses.Add(item.CostCenter, item.Expense);
+            //     }
+            // }
+            //
+            // foreach (var (key, value) in costCenterExpenses)
+            // {
+            //     viewModel.Add(new TotalCostViewModel(){CostCenter = key,Expense = value});
+            // }
             
-            Dictionary<string,int> costCenterExpenses = new Dictionary<string, int>();
-            foreach (var item in join2)
-            {
-                int expenses;
-                if (costCenterExpenses.TryGetValue(item.CostCenter, out expenses))
-                {
-                    costCenterExpenses[item.CostCenter] = expenses + item.Expense;
-                }
-                else
-                {
-                    costCenterExpenses.Add(item.CostCenter, item.Expense);
-                }
-            }
-
-            foreach (var (key, value) in costCenterExpenses)
-            {
-                viewModel.Add(new TotalCostViewModel(){CostCenter = key,Expense = value});
-            }
             return View(viewModel);
         }
     }

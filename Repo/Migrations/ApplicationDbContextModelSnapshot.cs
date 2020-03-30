@@ -19,7 +19,7 @@ namespace Repo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Data.CallingPlan", b =>
+            modelBuilder.Entity("Data.Models.CallingPlan", b =>
                 {
                     b.Property<int>("CallingPlanId")
                         .ValueGeneratedOnAdd()
@@ -37,30 +37,28 @@ namespace Repo.Migrations
                     b.ToTable("CallingPlans");
                 });
 
-            modelBuilder.Entity("Data.DataPlan", b =>
+            modelBuilder.Entity("Data.Models.DataPlan", b =>
                 {
                     b.Property<int>("DataPlanId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("InternationalData")
-                        .HasColumnType("int");
+                    b.Property<float>("InternationalData")
+                        .HasColumnType("real");
 
-                    b.Property<int>("NationalData")
-                        .HasColumnType("int");
+                    b.Property<float>("NationalData")
+                        .HasColumnType("real");
 
                     b.HasKey("DataPlanId");
 
                     b.ToTable("DataPlans");
                 });
 
-            modelBuilder.Entity("Data.Employee", b =>
+            modelBuilder.Entity("Data.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("CostCenter")
                         .HasColumnType("nvarchar(max)");
@@ -76,7 +74,7 @@ namespace Repo.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Data.LandlinePhoneCall", b =>
+            modelBuilder.Entity("Data.Models.LandlinePhoneCall", b =>
                 {
                     b.Property<int>("Extension")
                         .HasColumnType("int");
@@ -106,12 +104,10 @@ namespace Repo.Migrations
                     b.ToTable("LandLinePhoneCalls");
                 });
 
-            modelBuilder.Entity("Data.MobilePhone", b =>
+            modelBuilder.Entity("Data.Models.MobilePhone", b =>
                 {
-                    b.Property<int>("IMEI")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<long>("IMEI")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Modelo")
                         .HasColumnType("nvarchar(max)");
@@ -121,13 +117,13 @@ namespace Repo.Migrations
                     b.ToTable("MobilePhones");
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneCall", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneCall", b =>
                 {
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("IMEI")
-                        .HasColumnType("int");
+                    b.Property<long>("IMEI")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
@@ -148,7 +144,7 @@ namespace Repo.Migrations
                     b.ToTable("MobilePhoneCalls");
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneCallingPlanAssignment", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneCallingPlanAssignment", b =>
                 {
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
@@ -172,7 +168,7 @@ namespace Repo.Migrations
                     b.ToTable("MobilePhoneCallingPlanAssignments");
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneDataPlanAssignment", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneDataPlanAssignment", b =>
                 {
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
@@ -183,14 +179,14 @@ namespace Repo.Migrations
                     b.Property<int>("DataPlanId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InternationalDataUsage")
-                        .HasColumnType("int");
+                    b.Property<float>("InternationalDataUsage")
+                        .HasColumnType("real");
 
-                    b.Property<int?>("MobilePhoneIMEI")
-                        .HasColumnType("int");
+                    b.Property<long?>("MobilePhoneIMEI")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("NationalDataUsage")
-                        .HasColumnType("int");
+                    b.Property<float>("NationalDataUsage")
+                        .HasColumnType("real");
 
                     b.HasKey("PhoneNumber", "DataPlanAssignmentDateTime", "DataPlanId");
 
@@ -201,10 +197,10 @@ namespace Repo.Migrations
                     b.ToTable("MobilePhoneDataPlanAssignments");
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneEmployee", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneEmployee", b =>
                 {
-                    b.Property<int>("IMEI")
-                        .HasColumnType("int");
+                    b.Property<long>("IMEI")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -216,12 +212,10 @@ namespace Repo.Migrations
                     b.ToTable("MobilePhoneEmployees");
                 });
 
-            modelBuilder.Entity("Data.PhoneLine", b =>
+            modelBuilder.Entity("Data.Models.PhoneLine", b =>
                 {
                     b.Property<int>("PhoneNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("PIN")
                         .HasColumnType("int");
@@ -234,7 +228,7 @@ namespace Repo.Migrations
                     b.ToTable("PhoneLines");
                 });
 
-            modelBuilder.Entity("Data.PhoneLineEmployee", b =>
+            modelBuilder.Entity("Data.Models.PhoneLineEmployee", b =>
                 {
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
@@ -445,88 +439,88 @@ namespace Repo.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Data.LandlinePhoneCall", b =>
+            modelBuilder.Entity("Data.Models.LandlinePhoneCall", b =>
                 {
-                    b.HasOne("Data.Employee", "Employee")
+                    b.HasOne("Data.Models.Employee", "Employee")
                         .WithMany("LandlinePhoneCalls")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneCall", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneCall", b =>
                 {
-                    b.HasOne("Data.MobilePhone", "MobilePhone")
+                    b.HasOne("Data.Models.MobilePhone", "MobilePhone")
                         .WithMany("MobilePhoneCalls")
                         .HasForeignKey("IMEI")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.PhoneLine", "PhoneLine")
+                    b.HasOne("Data.Models.PhoneLine", "PhoneLine")
                         .WithMany("MobilePhoneCalls")
                         .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneCallingPlanAssignment", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneCallingPlanAssignment", b =>
                 {
-                    b.HasOne("Data.CallingPlan", "CallingPlan")
+                    b.HasOne("Data.Models.CallingPlan", "CallingPlan")
                         .WithMany("MobilePhoneCallingPlanAssignments")
                         .HasForeignKey("CallingPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.PhoneLine", "PhoneLine")
+                    b.HasOne("Data.Models.PhoneLine", "PhoneLine")
                         .WithMany("MobilePhoneCallingPlanAssignments")
                         .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneDataPlanAssignment", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneDataPlanAssignment", b =>
                 {
-                    b.HasOne("Data.DataPlan", "DataPlan")
+                    b.HasOne("Data.Models.DataPlan", "DataPlan")
                         .WithMany("MobilePhoneDataPlanAssignments")
                         .HasForeignKey("DataPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.MobilePhone", null)
+                    b.HasOne("Data.Models.MobilePhone", null)
                         .WithMany("MobilePhoneDataPlanAssignments")
                         .HasForeignKey("MobilePhoneIMEI");
 
-                    b.HasOne("Data.PhoneLine", "PhoneLine")
+                    b.HasOne("Data.Models.PhoneLine", "PhoneLine")
                         .WithMany("MobilePhoneDataPlanAssignments")
                         .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.MobilePhoneEmployee", b =>
+            modelBuilder.Entity("Data.Models.MobilePhoneEmployee", b =>
                 {
-                    b.HasOne("Data.Employee", "Employee")
+                    b.HasOne("Data.Models.Employee", "Employee")
                         .WithMany("MobilePhoneEmployees")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.MobilePhone", "MobilePhone")
+                    b.HasOne("Data.Models.MobilePhone", "MobilePhone")
                         .WithMany("MobilePhoneEmployee")
                         .HasForeignKey("IMEI")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.PhoneLineEmployee", b =>
+            modelBuilder.Entity("Data.Models.PhoneLineEmployee", b =>
                 {
-                    b.HasOne("Data.Employee", "Employee")
+                    b.HasOne("Data.Models.Employee", "Employee")
                         .WithMany("PhoneLineEmployees")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.PhoneLine", "PhoneLine")
+                    b.HasOne("Data.Models.PhoneLine", "PhoneLine")
                         .WithMany("PhoneLineEmployees")
                         .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)

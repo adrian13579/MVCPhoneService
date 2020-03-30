@@ -26,7 +26,7 @@ namespace MVCPhoneServiceWeb.Controllers
         }
 
         // GET: MobilePhoneEmployees/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
             {
@@ -72,7 +72,7 @@ namespace MVCPhoneServiceWeb.Controllers
         }
 
         // GET: MobilePhoneEmployees/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
             {
@@ -94,7 +94,7 @@ namespace MVCPhoneServiceWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IMEI,EmployeeId")] MobilePhoneEmployee mobilePhoneEmployee)
+        public async Task<IActionResult> Edit(long id, [Bind("IMEI,EmployeeId")] MobilePhoneEmployee mobilePhoneEmployee)
         {
             if (id != mobilePhoneEmployee.IMEI)
             {
@@ -127,7 +127,7 @@ namespace MVCPhoneServiceWeb.Controllers
         }
 
         // GET: MobilePhoneEmployees/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
             {
@@ -149,7 +149,7 @@ namespace MVCPhoneServiceWeb.Controllers
         // POST: MobilePhoneEmployees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var mobilePhoneEmployee = await _context.MobilePhoneEmployees.FindAsync(id);
             _context.MobilePhoneEmployees.Remove(mobilePhoneEmployee);
@@ -157,7 +157,7 @@ namespace MVCPhoneServiceWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MobilePhoneEmployeeExists(int id)
+        private bool MobilePhoneEmployeeExists(long id)
         {
             return _context.MobilePhoneEmployees.Any(e => e.IMEI == id);
         }

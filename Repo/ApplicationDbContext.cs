@@ -40,6 +40,15 @@ namespace Repo
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<MobilePhone>().HasKey(a => a.IMEI);
+            builder.Entity<MobilePhone>().Property(a => a.IMEI).ValueGeneratedNever();
+
+            builder.Entity<PhoneLine>().HasKey(a => a.PhoneNumber);
+            builder.Entity<PhoneLine>().Property(a => a.PhoneNumber).ValueGeneratedNever();
+
+            builder.Entity<Employee>().Property(a => a.EmployeeId);
+            builder.Entity<Employee>().Property(a => a.EmployeeId).ValueGeneratedNever();
+            
              base.OnModelCreating(builder);
             builder.Entity<MobilePhoneEmployee>()
                 .HasKey(a => a.IMEI);

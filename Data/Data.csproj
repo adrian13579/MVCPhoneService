@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Chart.Mvc.Core" Version="1.1.0" />
+      <PackageReference Include="Syncfusion.EJ.Export" Version="18.1.0.36-beta" />
     </ItemGroup>
 
 </Project>

@@ -24,7 +24,7 @@ namespace MVCPhoneServiceWeb.Controllers
         }
 
         // GET: MobilePhones/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
             {
@@ -64,7 +64,7 @@ namespace MVCPhoneServiceWeb.Controllers
         }
 
         // GET: MobilePhones/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
             {
@@ -84,7 +84,7 @@ namespace MVCPhoneServiceWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IMEI,Modelo")] MobilePhone mobilePhone)
+        public async Task<IActionResult> Edit(long id, [Bind("IMEI,Modelo")] MobilePhone mobilePhone)
         {
             if (id != mobilePhone.IMEI)
             {
@@ -115,7 +115,7 @@ namespace MVCPhoneServiceWeb.Controllers
         }
 
         // GET: MobilePhones/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
             {
@@ -135,7 +135,7 @@ namespace MVCPhoneServiceWeb.Controllers
         // POST: MobilePhones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var mobilePhone = await _context.MobilePhones.FindAsync(id);
             _context.MobilePhones.Remove(mobilePhone);
@@ -143,7 +143,7 @@ namespace MVCPhoneServiceWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MobilePhoneExists(int id)
+        private bool MobilePhoneExists(long id)
         {
             return _context.MobilePhones.Any(e => e.IMEI == id);
         }

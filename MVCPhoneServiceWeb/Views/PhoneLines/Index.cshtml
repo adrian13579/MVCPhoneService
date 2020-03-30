@@ -5,45 +5,91 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PUK)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PIN)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PUK)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PIN)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PhoneNumber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PhoneNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PhoneNumber">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+
+    <div class="border backgroundWhite">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-black">
+                    Phone Lines
+                </h2>
+            </div>
+            <div class="col-6 text-right">
+                <p>
+                    <a asp-action="Create" class="btn btn-outline-dark">
+                        <i class="fa fa-plus"></i>
+                        &nbsp; Create New
+                    </a>
+                </p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <form class="col-12 text-right" asp-controller="TotalCost" asp-action="CostCenterExpenseMobile">
+                <div class=" row">
+                    <div class="col-11">
+                        <label value="PhoneNumber" class="col-form-label">Phone Number</label>
+                        <input type="text" class="rounded" name="PhoneNumber" />
+
+                        <label value="Pin" class="col-form-label">Pin</label>
+                        <input type="text" class="rounded" name="Pin" />
+
+                        <label value="Puk" class="col-form-label">Puk</label>
+                        <input type="text" class="rounded" name="Puk" />
+                    </div>
+                    <div class="col-1">
+                        <input class="btn btn-outline-dark col-form-label" type="submit" value="filter" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br />
+
+        <table class="table table-striped border">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PUK)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PIN)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PUK)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PIN)
+                    </td>
+                    <td style="width:150px">
+                        <div class="btn-group" role="group">
+                            <a class=" btn btn-info text-white" asp-action="Edit" asp-route-id="@item.PhoneNumber">
+                                <i class="fas fa-edit"></i>
+                                @*Edit*@
+                                @*<span class="glyphicon glyphicon-search" aria-hidden="true"></span>*@
+                            </a>
+
+                            <a class=" btn btn-dark text-white" asp-action="Details" asp-route-id="@item.PhoneNumber">
+                                <i class="fas fa-list"></i>
+                                @*Details*@
+                            </a>
+
+                            <a class=" btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.PhoneNumber">
+                                <i class="fas fa-trash-alt"></i>
+                                @*Delete*@
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
